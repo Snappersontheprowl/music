@@ -9,6 +9,7 @@
 | `score/` | 按曲目保存来源谱、Audiveris 工程和导出成果 |
 | `theory/` | 保存乐理笔记、曲式分析、练习和配套资料 |
 | `doc/` | 保存项目级文档规范与操作说明 |
+| `tools/` | 保存工具版本、配置和使用说明 |
 
 协作规则见 [`AGENTS.md`](AGENTS.md)，待办事项见 [`TODO`](TODO)。
 
@@ -27,6 +28,8 @@
 4. 将经过校对的 MusicXML、MXL、MIDI 或 PDF 放入 `export/`。
 5. 详细目录结构和命名要求见 [`score/README.md`](score/README.md)。
 
+Audiveris 工具层面的说明见 [`tools/Audiveris/README.md`](tools/Audiveris/README.md)。
+
 ## 文件与版本
 
 - 原始谱面只保留来源版本，不在原文件上做不可逆修改。
@@ -36,4 +39,4 @@
 
 ## 文档维护
 
-目录职责、文件格式、命名规则或工作流发生变化时，应在同一次修改中更新相关 README。README 的编写要求见 [`doc/README_GUIDE.md`](doc/README_GUIDE.md)。
+目录职责、文件格式、命名规则或工作流发生变化时，应在同一次修改中更新相关 README。README 的编写建议见 [`doc/README_GUIDE.md`](doc/README_GUIDE.md)。
