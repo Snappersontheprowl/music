@@ -1,47 +1,60 @@
 # 乐谱资料
 
-本目录保存可追溯的乐谱来源、Audiveris 工程和数字化导出成果。
+按作品和来源版本，保存原始乐谱、识别工程、编辑主文件与发布成果。自动识别对象为印刷五线谱；简谱、手写谱和其他记谱法须先评估样张。
 
 ## 目录模型
 
-每部作品使用一个稳定曲目标识目录：
-
 ```text
-score/
-└── <work-slug>/
-    ├── README.md
-    ├── source/
-    │   └── <edition-slug>.<ext>
-    ├── audiveris/
-    │   └── <edition-slug>/
-    └── export/
-        └── <edition-slug>.<ext>
+score/<work-slug>/
+├── README.md
+├── source/<edition-slug>/
+│   ├── README.md
+│   ├── page-001.png
+│   └── page-002.jpg
+├── audiveris/<edition-slug>/
+│   ├── input.tiff
+│   └── ...
+├── notation/<edition-slug>/
+│   ├── README.md
+│   └── <edition-slug>.mscz
+└── export/<edition-slug>/
+    ├── <edition-slug>.musicxml
+    └── <edition-slug>.pdf
 ```
 
-- `source/` 保存原始 PDF、图片或 MusicXML，不覆盖原始来源。
-- `audiveris/` 保存对应版本的 Audiveris 工程及其必要工作文件。
-- `export/` 保存经过校对的 MusicXML、MXL、MIDI 或 PDF 等成果。
-- 曲目目录中的 `README.md` 记录作品信息、来源、版权或使用条件、Audiveris 版本和校订状态。
+这是运行流程后的示意结构；初始化只创建目录和记录模板。
 
-同一作品存在多个编配、出版社或来源时，以不同的 `edition-slug` 区分，不覆盖已有版本。
+| 目录 / 文件 | 职责 |
+| --- | --- |
+| 曲目 `README.md` | 作品信息、目录职责与版本入口 |
+| `source/` | 原始来源，各版本 README 记录来源、页序与使用条件 |
+| `audiveris/` | 派生的识别输入、`.omr` 工程、日志与未校对 `.mxl` |
+| `notation/` | `.mscz` 编辑主文件、工具版本、校订清单与发布记录 |
+| `export/` | 经过校对、从同一编辑主文件导出的 MusicXML 与 PDF |
 
 ## 命名规则
 
-- `<work-slug>`：小写 ASCII 单词和连字符，优先包含作曲家和作品标识，例如 `chopin-nocturne-op9-no2`。
-- `<edition-slug>`：描述来源或编配，例如 `piano-solo`、`satb`、`imslp-peters`。
-- 扩展名必须对应真实文件格式。
-- 禁止使用 `new`、`final`、`tmp`、`test2`、`v2` 等阶段性名称决定文件身份。
-- 同一版本的不同导出格式尽量使用相同的 `edition-slug` 基名。
+- `<work-slug>` 使用小写 ASCII 字母、数字和连字符，优先包含作曲家与作品标识，例如 `chopin-nocturne-op9-no2`。
+- `<edition-slug>` 使用相同字符规则，描述出版社、来源或编配，例如 `imslp-peters`；不同来源、编配分开建版本。
+- 图片使用 `page-001.png`、`page-002.jpg` 等三位连续页码，从 001 开始，允许 PNG、JPG、JPEG 混合，扩展名小写。同一页码不得出现两个文件。
+- PDF 来源使用 `score.pdf`；单一版本选择 PDF 或逐页图片，二者不混放。页数超过 999 时先明确分册。
+- 编辑工程与发布成果统一使用 `<edition-slug>` 基名；识别工作文件保留 Audiveris 实际生成的名称。
+- 修订使用 Git 历史管理，全局命名原则见 [AGENTS.md](../AGENTS.md)。
 
-## 整理流程
+## 主文件与追溯
 
-1. 建立 `<work-slug>/README.md`，登记作品、来源和用途。
-2. 将原始来源放入 `source/`，文件名使用稳定的 `edition-slug`。
-3. 在 `audiveris/<edition-slug>/` 中完成识别和人工校订。
-4. 将可复用的成果放入 `export/`，并记录导出格式和完成状态。
-5. 校订后检查调号、拍号、临时升降号、连音、休止、反复和分页信息。
-6. 确认来源和版权提示完整后再提交。
+原始文件保持不变。`.omr` 用于回到识别阶段校正，`.mscz` 是导入后日常编辑的主文件，MusicXML 是交换格式，PDF 是阅读与打印成果。
+
+导入后优先在 MuseScore 中继续修改；若回到 Audiveris 重新导出，重新导入会替换编辑起点，必须先在 Git 中保存并明确处理已有排版修改。脚本拒绝覆盖现有工程和发布文件，不自动合并两个阶段的改动。
+
+主文件变化后应更新校订记录并重新发布，旧 PDF 不代表当前编辑内容。发布文件与主文件在同一次 Git 提交中保存。来源不明或未完成校对时，不应把输出登记为已发布。
+
+## 操作入口
+
+使用根目录的 `python3 scripts/score.py` 初始化和执行工作流，完整命令、人工校对和故障处理见 [乐谱数字化指南](../doc/SCORE_WORKFLOW.md)。
+
+多页图片由脚本按页码无损打包为多页 TIFF，交给 Audiveris 作为一本乐谱处理；逐个图片参数输入不能视为自动合并。同一作品含多个乐章时，识别结果仍可能有多个 MXL，应在导入前检查作品与乐章边界。
 
 ## 大型文件
 
-导入扫描谱、音频或大型工程前，先检查文件体积和增长趋势。若普通 Git 管理成本过高，应记录实际体积后统一启用 Git LFS，不应把大文件散落或重复保存。
+导入前检查原图、派生 TIFF 和 OMR 工程的总体体积。识别输入可以由原图重建，但应在确认工程可重开后再决定是否删除；不要无意重复保存多个副本。根据实际增长决定是否启用 Git LFS。

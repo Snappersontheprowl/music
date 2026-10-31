@@ -8,3 +8,7 @@ desktop.ini
 *.swo
 *~
 *.tmp
+
+# Python runtime caches
+__pycache__/
+*.pyc

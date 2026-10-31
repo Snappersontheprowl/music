@@ -7,6 +7,9 @@
 ## 本级模块职责
 
 - `Audiveris/`：保存 Audiveris 的版本、配置和操作说明。
+- `MuseScore/`：保存 MuseScore Studio 安装、编辑与 PDF 导出说明。
+
+两个工具通过 MusicXML 交换乐谱。统一操作入口见 [scripts/README.md](../scripts/README.md)。
 
 ## 命名规则
 

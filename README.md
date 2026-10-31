@@ -1,15 +1,16 @@
 # Music
 
-本仓库用于整理音乐学习资料，主要包括乐理学习笔记、曲式分析、乐谱来源文件和 Audiveris 数字化成果。
+本仓库用于整理音乐学习资料，包括乐理学习、曲式分析，以及从图片乐谱到可编辑工程和 PDF 的数字化流程。
 
 ## 目录职责
 
 | 目录 | 职责 |
 | --- | --- |
-| `score/` | 按曲目保存来源谱、Audiveris 工程和导出成果 |
+| `score/` | 按作品、来源版本保存原谱、识别工程、编辑工程与发布成果 |
 | `theory/` | 保存乐理笔记、曲式分析、练习和配套资料 |
 | `doc/` | 保存项目级文档规范与操作说明 |
 | `tools/` | 保存工具版本、配置和使用说明 |
+| `scripts/` | 提供曲目初始化、工具检查、识别、编辑与导出命令 |
 
 协作规则见 [`AGENTS.md`](AGENTS.md)，待办事项见 [`TODO`](TODO)。
 
@@ -22,13 +23,24 @@
 
 ## 乐谱整理流程
 
-1. 在 `score/` 下为每部作品建立稳定的曲目标识目录。
-2. 将原始扫描页或下载谱面放入 `source/`，保留来源和版权信息。
-3. 将 Audiveris 工程及其工作文件放入 `audiveris/`。
-4. 将经过校对的 MusicXML、MXL、MIDI 或 PDF 放入 `export/`。
-5. 详细目录结构和命名要求见 [`score/README.md`](score/README.md)。
+```text
+PNG / JPG / PDF → Audiveris（OMR 工程）→ MusicXML / MXL
+                                           ↓
+                              MuseScore Studio（MSCZ 编辑主文件）
+                                           ↓
+                                  MusicXML + PDF 发布成果
+```
 
-Audiveris 工具层面的说明见 [`tools/Audiveris/README.md`](tools/Audiveris/README.md)。
+在项目根目录开始：
+
+```bash
+python3 scripts/score.py doctor
+python3 scripts/score.py init chopin-nocturne-op9-no2 imslp-peters
+```
+
+第二条命令创建真实曲目目录，请替换为实际作品与来源标识。放入原图并登记来源后继续识别、校对、排版和导出。完整操作见 [乐谱数字化指南](doc/SCORE_WORKFLOW.md)，目录命名见 [乐谱规范](score/README.md)，命令说明见 [脚本入口](scripts/README.md)。
+
+工具说明：[Audiveris](tools/Audiveris/README.md)、[MuseScore Studio](tools/MuseScore/README.md)。批量识别和文件导出可无界面运行，目视校对与排版使用图形编辑器。
 
 ## 文件与版本
 
