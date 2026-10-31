@@ -67,10 +67,12 @@ class WorkflowTests(unittest.TestCase):
             (self.paths["audiveris"] / "input.omr").write_bytes(b"fixture")
             (self.paths["audiveris"] / "input.mxl").write_bytes(b"fixture")
 
-        with patch.object(score, "run", side_effect=fake_recognition):
+        with patch.object(score, "run", side_effect=fake_recognition), \
+                patch.object(score, "MAX_IMAGE_PIXELS", 100):
             score.recognize(self.args)
         with Image.open(self.paths["audiveris"] / "input.tiff") as image:
             self.assertEqual(image.n_frames, 2)
+            self.assertLessEqual(image.width * image.height, 100)
             self.assertEqual(image.getpixel((0, 0)), (255, 0, 0))
             image.seek(1)
             self.assertEqual(image.getpixel((0, 0)), (0, 0, 255))

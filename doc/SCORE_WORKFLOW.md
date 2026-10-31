@@ -26,7 +26,7 @@ python3 scripts/score.py init chopin-nocturne-op9-no2 imslp-peters
 
 将图片复制到 `score/chopin-nocturne-op9-no2/source/imslp-peters/`，按页序命名为 `page-001.png`、`page-002.jpg` 等。PDF 则使用 `score.pdf`，不要混放两种输入。
 
-检查页面方向、清晰度、五线谱边缘和页序。若需要人工裁切或修复，另行保留原件和处理说明，不覆盖来源；当前自动入口只处理原始图片的方向与格式打包。
+检查页面方向、清晰度、五线谱边缘和页序。若需要人工裁切或修复，另行保留原件和处理说明，不覆盖来源；当前自动入口处理方向、超大页面的等比例缩小与格式打包，均不改写原图。
 
 ## 3. 批量识别
 
@@ -87,3 +87,9 @@ python3 scripts/score.py publish chopin-nocturne-op9-no2 imslp-peters
 - 识别准确率取决于原图与记谱复杂程度。自动化不会把未核对的结果标记为已校对。
 
 PDF 导出与命令行转换依据：[MuseScore 导出说明](https://handbook.musescore.org/file-management/file-export)、[命令行说明](https://handbook.musescore.org/appendix/command-line-usage)。
+
+## 本机验证范围
+
+2026-10-31 已验证用户级 Audiveris 5.11.0、MuseScore Studio 4.7.5、Pillow 12.0.0 和默认英文 OCR 数据。两页合成五线谱 PNG 完整经过识别、MXL 导入、MSCZ 保存以及 PDF / MusicXML 导出；识别 MXL 的 32 个音符音高顺序与合成原稿一致，最终导出 MusicXML 保留 32 个音符。
+
+目录隔离、覆盖保护、页序、派生缩放与原图不变、导出失败不发布等自动检查均通过。图形窗口与用户真实谱面的准确率尚未验证，中文歌词语言数据尚未配置。

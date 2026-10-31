@@ -3,6 +3,7 @@
 
 import argparse
 from datetime import datetime
+import math
 from pathlib import Path
 import re
 import shutil
@@ -15,6 +16,7 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 AUDIVERIS = "org.audiveris.audiveris"
 MUSESCORE = "org.musescore.MuseScore"
+MAX_IMAGE_PIXELS = 20_000_000  # Audiveris 5.11 default LOAD limit.
 
 
 def slug(value):
@@ -110,6 +112,12 @@ def doctor(_args):
     except ImportError:
         print("缺少 Pillow：python3 -m pip install -r scripts/requirements.txt", file=sys.stderr)
         failed = True
+    english = Path.home() / ".var/app" / AUDIVERIS / "config/tessdata/eng.traineddata"
+    if english.is_file() and english.stat().st_size:
+        print(f"Audiveris 英文 OCR 数据：{english}")
+    else:
+        print("缺少默认英文 OCR 数据，请按 tools/Audiveris/README.md 安装", file=sys.stderr)
+        failed = True
     if failed:
         raise ValueError("工具链检查未通过")
 
@@ -139,7 +147,15 @@ def recognize(args):
             for file in files:
                 inside(file, paths["source"])
                 with Image.open(file) as image:
-                    rgba = ImageOps.exif_transpose(image).convert("RGBA")
+                    oriented = ImageOps.exif_transpose(image)
+                    if oriented.width * oriented.height > MAX_IMAGE_PIXELS:
+                        factor = math.sqrt(MAX_IMAGE_PIXELS / (oriented.width * oriented.height))
+                        original_size = oriented.size
+                        oriented.thumbnail((max(1, int(oriented.width * factor)),
+                                            max(1, int(oriented.height * factor))),
+                                           Image.Resampling.LANCZOS)
+                        print(f"派生输入缩小：{file.name} {original_size} → {oriented.size}")
+                    rgba = oriented.convert("RGBA")
                     rgb = Image.new("RGB", rgba.size, "white")
                     rgb.paste(rgba, mask=rgba.getchannel("A"))
                     images.append(rgb)

@@ -19,7 +19,7 @@ python3 scripts/score.py --help
 
 | 命令 | 行为 |
 | --- | --- |
-| `python3 scripts/score.py doctor` | 检查两个 Flatpak 应用实际启动和 Pillow；失败返回非零 |
+| `python3 scripts/score.py doctor` | 检查两个 Flatpak 应用实际启动、Pillow 和默认英文 OCR 数据；失败返回非零 |
 | `python3 scripts/score.py init WORK EDITION` | 创建一个来源版本的四个工作目录、来源模板和校订模板 |
 | `python3 scripts/score.py recognize WORK EDITION` | 检查页码，打包多页 TIFF 或读取单个 PDF，运行批处理识谱 |
 | `python3 scripts/score.py import WORK EDITION INPUT` | 将本版本识别目录内的指定 MXL / MusicXML 转换为编辑主文件 |
@@ -32,7 +32,7 @@ python3 scripts/score.py --help
 
 固定使用 Flatpak ID，不回退到其他安装方式。每次调用增加项目路径访问权限，不写持久 override；应用原有权限不会因此缩小。
 
-图片打包只应用 EXIF 方向、将透明区域合成白色并保存无损 RGB TIFF；不做裁切、纠偏或自动增强，原图保持不变。大批高分辨率图片会占用内存，应按实际分册组织。
+图片打包应用 EXIF 方向，将超过 Audiveris 5.11 默认上限（2000 万像素）的页面等比例缩小到上限以内，透明区域合成白色，派生结果使用无损 RGB TIFF 编码。原图保持不变；不做裁切、纠偏或自动增强。大批高分辨率图片会占用内存，应按实际分册组织。
 
 识别工作目录必须为空，导入和发布目标不得已存在。重新运行前先保存 Git，再人工确认应移除的派生文件；脚本没有覆盖开关。识别失败保留工作目录，供诊断与手工校正。
 

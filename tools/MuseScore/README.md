@@ -20,6 +20,14 @@ python3 scripts/score.py edit WORK EDITION
 
 该命令从用户级 Flatpak 启动 MuseScore，并为本次运行增加项目目录访问权限。
 
+## 本机安装记录
+
+最后验证日期：2026-10-31。已安装 MuseScore Studio 4.7.5，运行时为 `org.kde.Platform/x86_64/6.9`；无显示环境下 `--version` 已正常退出。实际图形窗口仍需在桌面会话中验证。
+
+无界面转换实测通过：16 音符合成 MusicXML → MSCZ → PDF / MusicXML，导出后音符数量保持 16；两页合成 PNG 经 Audiveris 得到 MXL，再导入 MSCZ 并导出 PDF / MusicXML，最终保留 32 个音符。验证在临时目录进行，样例和输出已清理，未作为正式曲目入库。
+
+安装时 Flathub 将该包依赖的 KDE 6.9 和部分 GL 24.08 运行时标记为已停止维护；这是当前 Flatpak 包的依赖状态。更新工具时应同时复查其运行时状态。
+
 ## 文件与操作
 
 本目录保存工具资料；具体曲目的 MSCZ 主文件属于 `score/<work-slug>/notation/<edition-slug>/`。本目录说明文件使用 `README.md`；后续工具配置使用能描述用途的稳定名称。
