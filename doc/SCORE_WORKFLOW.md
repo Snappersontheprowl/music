@@ -1,7 +1,7 @@
 # 图片乐谱数字化指南
 
 - 状态：`active`
-- 最后验证：`2026-10-31`
+- 最后验证：`2026-11-01`
 - 适用范围：本仓库的印刷五线谱图片 / PDF 到可编辑乐谱与发布 PDF
 - 单一事实来源：[目录规范](../score/README.md)、[脚本入口](../scripts/README.md)、[工具资料](../tools/README.md)
 
@@ -13,11 +13,13 @@ MusicXML 保存可交换的音乐结构；MSCZ 保存持续编辑与排版的主
 
 以下示例使用 `chopin-nocturne-op9-no2` / `imslp-peters`，操作时替换为实际名称。
 
+执行前按 [项目环境](ENVIRONMENT.md) 创建根 `.venv/` 并同步根依赖清单；本指南中的 Python 命令均使用该环境。
+
 ## 1. 检查环境并初始化
 
 ```bash
-python3 scripts/score.py doctor
-python3 scripts/score.py init chopin-nocturne-op9-no2 imslp-peters
+.venv/bin/python scripts/score.py doctor
+.venv/bin/python scripts/score.py init chopin-nocturne-op9-no2 imslp-peters
 ```
 
 在 `source/imslp-peters/README.md` 填写来源与使用条件，在作品 README 填写曲名和作曲者。初始化支持为已有作品添加另一来源版本，不覆盖已有版本。
@@ -31,7 +33,7 @@ python3 scripts/score.py init chopin-nocturne-op9-no2 imslp-peters
 ## 3. 批量识别
 
 ```bash
-python3 scripts/score.py recognize chopin-nocturne-op9-no2 imslp-peters
+.venv/bin/python scripts/score.py recognize chopin-nocturne-op9-no2 imslp-peters
 ```
 
 脚本按页码打包多页 TIFF，再运行 Audiveris，无需图形界面。工程、日志和初步 MXL 留在本版本 `audiveris/`。
@@ -57,8 +59,8 @@ find score/chopin-nocturne-op9-no2/audiveris/imslp-peters -name '*.mxl'
 将所需完整乐谱的实际路径传给 import，以下 `INPUT.mxl` 须替换为上一条命令找到的文件路径：
 
 ```bash
-python3 scripts/score.py import chopin-nocturne-op9-no2 imslp-peters INPUT.mxl
-python3 scripts/score.py edit chopin-nocturne-op9-no2 imslp-peters
+.venv/bin/python scripts/score.py import chopin-nocturne-op9-no2 imslp-peters INPUT.mxl
+.venv/bin/python scripts/score.py edit chopin-nocturne-op9-no2 imslp-peters
 ```
 
 `import` 可无界面运行，`edit` 需要本机图形桌面。导入后以 `notation/imslp-peters/imslp-peters.mscz` 为编辑主文件。多乐章若需合成同一主文件，在编辑器内人工完成并对照原图确认顺序。
@@ -70,12 +72,12 @@ python3 scripts/score.py edit chopin-nocturne-op9-no2 imslp-peters
 保存并关闭编辑器后运行：
 
 ```bash
-python3 scripts/score.py publish chopin-nocturne-op9-no2 imslp-peters
+.venv/bin/python scripts/score.py publish chopin-nocturne-op9-no2 imslp-peters
 ```
 
-输出到 `export/imslp-peters/`，同时生成 PDF 和 MusicXML。打开 PDF 检查符号、字体与分页，更新校订状态和发布记录，再将原图、主工程、记录与成果一起提交。
+输出到 `export/imslp-peters/`，同时生成 PDF 和 MusicXML。打开 PDF 检查符号、字体与分页，更新校订状态和导出记录，再将原图、主工程、记录与成果一起保存到仓库外私有备份。曲目目录不进入公开 Git 跟踪范围。
 
-后续修改主文件会使旧导出过期。重新发布前先用 Git 保存旧成果，再人工移除本版本待更新的 PDF / MusicXML，重新执行 publish，避免脚本静默覆盖人工资料。
+后续修改主文件会使旧导出过期。重新导出前先私有备份旧成果，再人工移除本版本待更新的 PDF / MusicXML，重新执行 publish，避免脚本静默覆盖人工资料。公开传播的授权独立确认，项目的 `publish` 命令仅负责本地导出。
 
 ## 故障边界
 

@@ -1,0 +1,26 @@
+# Shared project environment: Python 3.12.13.
+# Exact package versions and PDF-to-GP5 source revision; includes transitive dependencies.
+# Sync with: uv pip sync --python .venv/bin/python requirements.txt
+attrs==26.1.0
+cffi==2.1.1
+charset-normalizer==3.5.2
+cryptography==50.0.2
+flatbuffers==25.12.19
+numpy==2.5.4
+onnxruntime==1.31.1
+opencv-python==5.0.0.93
+packaging==26.3
+pdf-to-gp5 @ git+https://github.com/F100Pilot/PDF-to-GP5.git@4754a207ff4a08be8dfb4b5097c4a4c3775004d4
+pdfminer-six==20260107
+pdfplumber==0.11.10
+pillow==13.0.0
+protobuf==7.36.2
+pyclipper==1.4.0
+pycparser==3.12
+pyguitarpro==0.11
+pypdfium2==5.14.0
+pyyaml==6.0.3
+rapidocr-onnxruntime==1.4.4
+shapely==2.2.0
+six==1.17.0
+tqdm==4.70.1

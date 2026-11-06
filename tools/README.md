@@ -8,8 +8,9 @@
 
 - `Audiveris/`：保存 Audiveris 的版本、配置和操作说明。
 - `MuseScore/`：保存 MuseScore Studio 安装、编辑与 PDF 导出说明。
+- `PDF-to-GP5/`：保存六线谱候选识别工具的固定环境、评估入口与结论；尚未接入主识别命令。
 
-两个工具通过 MusicXML 交换乐谱。统一操作入口见 [scripts/README.md](../scripts/README.md)。
+Audiveris 与 MuseScore 通过 MusicXML 交换乐谱。Python 脚本和评估入口共用根 `.venv/`，安装与依赖定义见 [项目环境](../doc/ENVIRONMENT.md)，统一操作入口见 [scripts/README.md](../scripts/README.md)。
 
 ## 命名规则
 

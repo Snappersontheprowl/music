@@ -81,7 +81,7 @@ def initialize(args):
         encoding="utf-8")
     (paths["notation"] / "README.md").write_text(
         f"# {args.edition} 校订记录\n\n"
-        f"编辑主文件：`{args.edition}.mscz`（导入后生成）。\n\n"
+        f"编辑主文件：`{args.edition}.mscz`（导入后生成，本地私有资料）。\n\n"
         "## 工具与进度\n\n- Audiveris 版本：待填写\n"
         "- MuseScore Studio 版本：待填写\n- 状态：待识别\n"
         "- 待解决问题：待填写\n\n## 核对清单\n\n"
@@ -93,12 +93,20 @@ def initialize(args):
         "- [ ] 对照原图检查，辅助播放试听\n"
         "- [ ] PDF 字体、符号重叠、页边距与翻页位置\n\n"
         "## 发布记录\n\n记录发布日期、对应 Git 提交、导出文件和剩余问题。"
-        "主文件修改后，旧 export 成果须重新校对并导出。\n",
+        "主文件修改后，旧 export 成果须重新校对并导出。工程、记录与成果一起保存到仓库外私有备份。\n",
         encoding="utf-8")
     print(f"已初始化：{work}，版本 {args.edition}")
 
 
 def doctor(_args):
+    expected_environment = ROOT / ".venv"
+    if Path(sys.prefix).resolve() != expected_environment.resolve():
+        raise ValueError(f"请使用项目环境：{expected_environment / 'bin/python'} scripts/score.py doctor")
+    expected_version = (ROOT / ".python-version").read_text().strip()
+    actual_version = ".".join(map(str, sys.version_info[:3]))
+    print(f"Python：{actual_version}（{sys.executable}）")
+    if actual_version != expected_version:
+        raise ValueError(f"Python 版本应为 {expected_version}，请按 doc/ENVIRONMENT.md 重建 .venv")
     failed = False
     for app, flag in ((AUDIVERIS, "-version"), (MUSESCORE, "--version")):
         try:
@@ -110,7 +118,7 @@ def doctor(_args):
         from PIL import Image
         print(f"Pillow：{Image.__version__}")
     except ImportError:
-        print("缺少 Pillow：python3 -m pip install -r scripts/requirements.txt", file=sys.stderr)
+        print("缺少 Pillow：uv pip sync --python .venv/bin/python requirements.txt", file=sys.stderr)
         failed = True
     english = Path.home() / ".var/app" / AUDIVERIS / "config/tessdata/eng.traineddata"
     if english.is_file() and english.stat().st_size:
@@ -219,7 +227,7 @@ def publish(args):
     destinations = [paths["export"] / f"{args.edition}{ext}"
                     for ext in (".pdf", ".musicxml")]
     if any(p.exists() for p in destinations):
-        raise ValueError("发布目标已存在；请先确认 Git 已保存旧成果，再移除待更新目标")
+        raise ValueError("发布目标已存在；请先确认已在仓库外私有备份中保存旧成果，再移除待更新目标")
     with tempfile.TemporaryDirectory(prefix=".publish-", dir=paths["export"]) as directory:
         for destination in destinations:
             convert(source, Path(directory) / destination.name)

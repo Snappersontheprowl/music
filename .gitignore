@@ -12,3 +12,10 @@ desktop.ini
 # Python runtime caches
 __pycache__/
 *.pyc
+
+# Project Python environment
+/.venv/
+
+# Local score collection: public repository keeps only the directory guide.
+/score/*
+!/score/README.md

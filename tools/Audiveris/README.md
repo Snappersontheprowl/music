@@ -56,7 +56,7 @@ flatpak run --filesystem=/home/eda/my_lab/projects/study/music org.audiveris.aud
 Audiveris 支持 `-batch -transcribe -save -export`，无需图形窗口即可完成识别、保存 OMR 工程和导出 MXL。统一入口为：
 
 ```bash
-python3 scripts/score.py recognize WORK EDITION
+.venv/bin/python scripts/score.py recognize WORK EDITION
 ```
 
 在项目根目录执行，并先用 `init` 初始化来源版本、放入原图。脚本按页码将多张图片打包为多页 TIFF，避免将各页误当成彼此独立的乐谱。识别工程和初步 MXL 留在曲目 `audiveris/`，人工校对后使用 [MuseScore Studio](../MuseScore/README.md) 编辑和排版。

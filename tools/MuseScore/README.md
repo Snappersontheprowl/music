@@ -9,13 +9,13 @@
 ```bash
 flatpak install --user flathub org.musescore.MuseScore
 flatpak info --user org.musescore.MuseScore
-python3 scripts/score.py doctor
+.venv/bin/python scripts/score.py doctor
 ```
 
 在图形桌面打开本项目的编辑主文件：
 
 ```bash
-python3 scripts/score.py edit WORK EDITION
+.venv/bin/python scripts/score.py edit WORK EDITION
 ```
 
 该命令从用户级 Flatpak 启动 MuseScore，并为本次运行增加项目目录访问权限。
