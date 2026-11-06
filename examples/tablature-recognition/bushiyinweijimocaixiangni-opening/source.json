@@ -1,0 +1,28 @@
+{
+  "work": "不是因为寂寞才想你",
+  "source_edition": "用户提供的小声指弹版",
+  "source_credit": "原图标有“小声指弹”，曲作者与具体编配署名未在所用图中明确，不作推定",
+  "original_notice": "原图标有 Copyright 小声指弹、All Rights Reserved 及不可传播说明",
+  "rights_clearance": "unverified; user-selected technical excerpt; no claim of permission or automatic exemption",
+  "scope": {
+    "page": 1,
+    "measures": [
+      1,
+      4
+    ],
+    "systems": 1
+  },
+  "original_dimensions": [
+    1280,
+    1811
+  ],
+  "crop_box": [
+    52,
+    362,
+    1228,
+    503
+  ],
+  "original_sha256": "f261b8d415bd1f28c1ec5747e755d1bbbdf828280843b9073bc36419b50a4e16",
+  "input_sha256": "45fc4cde1fb9088e0edb7ccded6079064c5556c7d89ea95570de16c94f06752c",
+  "purpose": "说明六线谱图片识别、节奏估算和格式转换的技术过程与局限"
+}

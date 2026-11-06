@@ -2,7 +2,10 @@
 """Reject score material anywhere in the history of refs intended for publication."""
 
 import argparse
+import hashlib
+import json
 from pathlib import Path, PurePosixPath
+import re
 import subprocess
 import sys
 
@@ -15,6 +18,8 @@ SCORE_SUFFIXES = {
 TRANSCRIPTION_NAMES = {
     "events.json", "reference.json", "parsed.json", "conversion.json", "preview.txt",
 }
+EXAMPLE_ROOT = "examples/tablature-recognition/"
+EXAMPLE_MANIFEST = "scripts/public_examples.json"
 
 
 def git(repository, *args):
@@ -25,7 +30,7 @@ def forbidden(path):
     if path == "score/README.md":
         return False
     file = PurePosixPath(path)
-    return (file.parts[0].casefold() == "score" or
+    return (file.parts[0].casefold() == "score" or path.startswith(EXAMPLE_ROOT) or
             file.suffix.casefold() in SCORE_SUFFIXES or
             file.name.casefold() in TRANSCRIPTION_NAMES)
 
@@ -52,10 +57,27 @@ def violations(repository, refs):
     bad = []
     for commit in sorted(commits):
         paths = git(repository, "ls-tree", "-rz", "--name-only", commit.decode()).split(b"\0")
+        approved = {}
+        # Each historical tree must carry its own reviewed exact-file manifest.
+        # A later whitelist never retroactively approves unreviewed ancestor data.
+        if EXAMPLE_MANIFEST.encode() in paths:
+            manifest = json.loads(git(repository, "show", f"{commit.decode()}:{EXAMPLE_MANIFEST}"))
+            approved = manifest["files"]
+            if not isinstance(approved, dict):
+                raise ValueError("Invalid public example manifest")
+            for path, digest in approved.items():
+                file = PurePosixPath(path)
+                if (not path.startswith(EXAMPLE_ROOT) or '..' in file.parts or
+                        not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest)):
+                    raise ValueError("Examples must name exact paths and SHA-256 hashes inside the example directory")
         for raw in paths:
             if raw:
                 path = raw.decode("utf-8", errors="surrogateescape")
-                if forbidden(path):
+                if path in approved:
+                    content = git(repository, "show", f"{commit.decode()}:{path}")
+                    if hashlib.sha256(content).hexdigest() != approved[path]:
+                        bad.append((commit.decode(), path))
+                elif forbidden(path):
                     bad.append((commit.decode(), path))
     return bad, len(commits)
 
@@ -69,7 +91,7 @@ def main():
         repository = Path(git(Path.cwd(), "rev-parse", "--show-toplevel").decode().strip())
         refs = pushed_refs(sys.stdin) if args.pre_push else (args.refs or ["HEAD"])
         bad, count = violations(repository, refs)
-    except (ValueError, subprocess.CalledProcessError, OSError) as error:
+    except (ValueError, KeyError, TypeError, subprocess.CalledProcessError, OSError) as error:
         print(f"Public-history check failed; push blocked: {error}", file=sys.stderr)
         return 1
     if bad:

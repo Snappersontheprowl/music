@@ -1,0 +1,27 @@
+{
+  "name": "opening",
+  "title": "不是因为寂寞才想你：前四小节识别示例",
+  "tempo": 80,
+  "meter": "4/4",
+  "tuning": [
+    64,
+    59,
+    55,
+    50,
+    45,
+    40
+  ],
+  "capo": 5,
+  "systems": [
+    {
+      "source": "input.png",
+      "box": [
+        0,
+        0,
+        1176,
+        141
+      ],
+      "measures": 4
+    }
+  ]
+}

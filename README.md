@@ -2,7 +2,7 @@
 
 本仓库用于整理音乐学习资料，包括乐理学习、曲式分析，以及从图片乐谱到可编辑工程和 PDF 的数字化流程。
 
-公开仓库保存工具、环境和通用文档。`score/` 下的曲目资料在本地维护，Git 仅跟踪其目录指南 `score/README.md`。原谱、转录数据、工程、PDF 和曲目专用参数均需单独进行私有备份。
+公开仓库保存工具、环境、通用文档和明确登记的片段技术示例。`score/` 下的曲目资料在本地维护，Git 仅跟踪其目录指南 `score/README.md`。原谱、转录数据、工程、PDF 和曲目专用参数均需单独进行私有备份。
 
 ## 目录职责
 
@@ -13,6 +13,7 @@
 | `doc/` | 保存项目级文档规范与操作说明 |
 | `tools/` | 保存工具版本、配置和使用说明 |
 | `scripts/` | 提供曲目初始化、工具检查、识别、编辑与导出命令 |
+| `examples/` | 范围明确、精确登记的识别教学示例，含过程、结果和误差分析 |
 
 协作规则见 [`AGENTS.md`](AGENTS.md)，待办事项见 [`TODO`](TODO)。
 
@@ -74,6 +75,8 @@ PNG / JPG / PDF → Audiveris（OMR 工程）→ MusicXML / MXL
 ```
 
 检查规则与备份恢复边界见 [公开仓库维护](doc/PUBLIC_REPOSITORY.md)。
+
+完整识别过程可以从 [四小节六线谱示例](examples/tablature-recognition/bushiyinweijimocaixiangni-opening/README.md) 开始阅读。此片段的公开登记不改变整谱的本地保存规则。
 
 ## 文档维护
 

@@ -1,0 +1,495 @@
+{
+  "title": "",
+  "tempo": 80,
+  "tracks": [
+    {
+      "name": "Track 1",
+      "capo": 0,
+      "strings": [
+        {
+          "number": 1,
+          "midi": 64
+        },
+        {
+          "number": 2,
+          "midi": 59
+        },
+        {
+          "number": 3,
+          "midi": 55
+        },
+        {
+          "number": 4,
+          "midi": 50
+        },
+        {
+          "number": 5,
+          "midi": 45
+        },
+        {
+          "number": 6,
+          "midi": 40
+        }
+      ],
+      "measures": [
+        {
+          "number": 1,
+          "meter": "4/4",
+          "voices": [
+            [
+              {
+                "start_tick": 960,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 1,
+                    "fret": 0,
+                    "type": "normal"
+                  },
+                  {
+                    "string": 2,
+                    "fret": 1,
+                    "type": "normal"
+                  },
+                  {
+                    "string": 3,
+                    "fret": 0,
+                    "type": "normal"
+                  },
+                  {
+                    "string": 5,
+                    "fret": 3,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 1440,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 4,
+                    "fret": 2,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 1920,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 2,
+                    "fret": 3,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 2400,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 4,
+                    "fret": 2,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 2880,
+                "duration_ticks": 960,
+                "duration_value": 4,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 1,
+                    "fret": 3,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 3840,
+                "duration_ticks": 960,
+                "duration_value": 4,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 2,
+                    "fret": 0,
+                    "type": "dead"
+                  },
+                  {
+                    "string": 3,
+                    "fret": 0,
+                    "type": "dead"
+                  }
+                ]
+              }
+            ],
+            [
+              {
+                "start_tick": 960,
+                "duration_ticks": 960,
+                "duration_value": 4,
+                "dotted": false,
+                "status": "empty",
+                "notes": []
+              }
+            ]
+          ]
+        },
+        {
+          "number": 2,
+          "meter": "4/4",
+          "voices": [
+            [
+              {
+                "start_tick": 4800,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 2,
+                    "fret": 3,
+                    "type": "normal"
+                  },
+                  {
+                    "string": 3,
+                    "fret": 0,
+                    "type": "normal"
+                  },
+                  {
+                    "string": 5,
+                    "fret": 2,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 5280,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 4,
+                    "fret": 0,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 5760,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 2,
+                    "fret": 0,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 6240,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 4,
+                    "fret": 0,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 6720,
+                "duration_ticks": 960,
+                "duration_value": 4,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 1,
+                    "fret": 3,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 7680,
+                "duration_ticks": 960,
+                "duration_value": 4,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 2,
+                    "fret": 0,
+                    "type": "dead"
+                  }
+                ]
+              }
+            ],
+            [
+              {
+                "start_tick": 4800,
+                "duration_ticks": 960,
+                "duration_value": 4,
+                "dotted": false,
+                "status": "empty",
+                "notes": []
+              }
+            ]
+          ]
+        },
+        {
+          "number": 3,
+          "meter": "4/4",
+          "voices": [
+            [
+              {
+                "start_tick": 8640,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 5,
+                    "fret": 0,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 9120,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 5,
+                    "fret": 0,
+                    "type": "tie"
+                  }
+                ]
+              },
+              {
+                "start_tick": 9600,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 1,
+                    "fret": 5,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 10080,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 3,
+                    "fret": 2,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 10560,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 1,
+                    "fret": 3,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 11040,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 1,
+                    "fret": 3,
+                    "type": "tie"
+                  }
+                ]
+              },
+              {
+                "start_tick": 11520,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 2,
+                    "fret": 5,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 12000,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 2,
+                    "fret": 5,
+                    "type": "tie"
+                  }
+                ]
+              }
+            ],
+            [
+              {
+                "start_tick": 8640,
+                "duration_ticks": 960,
+                "duration_value": 4,
+                "dotted": false,
+                "status": "empty",
+                "notes": []
+              }
+            ]
+          ]
+        },
+        {
+          "number": 4,
+          "meter": "4/4",
+          "voices": [
+            [
+              {
+                "start_tick": 12480,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 2,
+                    "fret": 3,
+                    "type": "normal"
+                  },
+                  {
+                    "string": 6,
+                    "fret": 3,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 12960,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 4,
+                    "fret": 0,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 13440,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 1,
+                    "fret": 0,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 13920,
+                "duration_ticks": 480,
+                "duration_value": 8,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 4,
+                    "fret": 0,
+                    "type": "normal"
+                  }
+                ]
+              },
+              {
+                "start_tick": 14400,
+                "duration_ticks": 1920,
+                "duration_value": 2,
+                "dotted": false,
+                "status": "normal",
+                "notes": [
+                  {
+                    "string": 1,
+                    "fret": 3,
+                    "type": "normal"
+                  }
+                ]
+              }
+            ],
+            [
+              {
+                "start_tick": 12480,
+                "duration_ticks": 960,
+                "duration_value": 4,
+                "dotted": false,
+                "status": "empty",
+                "notes": []
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

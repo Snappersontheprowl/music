@@ -14,6 +14,7 @@ uv pip sync --python .venv/bin/python requirements.txt
 - `check_public_history.py`：检查待公开引用的完整 Git 历史，阻止曲谱与私有备份进入推送。
 - `test_public_history.py`：用真实提交、删除历史、标签和本地推送验证公开边界。
 - `test_tablature.py`：用原创合成音符验证六线谱合并、时间位置与覆盖保护。
+- `public_examples.json`：经明确登记的教学片段精确路径与 SHA-256 清单，由历史检查逐提交验证；不放行整个曲目目录。
 
 ## 命令
 
@@ -49,7 +50,7 @@ MSCZ 转换和发布先在目标目录内的临时目录生成，转换全部成
 .venv/bin/python scripts/check_public_history.py main
 ```
 
-检查覆盖拟推送分支和标签的全部可达提交。即使最新提交删除了曲谱，旧提交仍含曲谱也会被拒绝；删除远程引用不发送本地历史。完整规则见 [公开仓库维护](../doc/PUBLIC_REPOSITORY.md)。
+检查覆盖拟推送分支和标签的全部可达提交。即使最新提交删除了曲谱，旧提交仍含未经登记曲谱也会被拒绝；删除远程引用不发送本地历史。教学示例以提交自身的精确文件与哈希清单作为限定例外，完整规则见 [公开仓库维护](../doc/PUBLIC_REPOSITORY.md)。
 
 运行检查：
 

@@ -17,7 +17,7 @@
 
 - 代码发生修改后，需及时进行本地 `git commit`。
 - 不得擅自回滚或覆盖用户已有未授权变更。
-- 本仓库公开工具、环境与通用文档；`score/` 下仅 `README.md` 可跟踪，曲目原图、转录、工程、导出、专用脚本和参数均保留在本地。
+- 本仓库公开工具、环境、通用文档及明确登记的片段技术示例；`score/` 下仅 `README.md` 可跟踪，曲目原图、转录、工程、导出、专用脚本和参数均保留在本地。片段示例的范围与登记规则见 `examples/README.md`，不得自行扩大。
 - 曲目资料的修订使用仓库外的私有备份追溯，不提交到公开 Git 历史，不通过强制添加或跳过检查上传。
 - 推送前须启用版本化钩子：`git config --local core.hooksPath .githooks`；历史检查入口为 `.venv/bin/python scripts/check_public_history.py`。
 

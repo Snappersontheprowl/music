@@ -1,0 +1,18 @@
+{
+  "files": {
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/README.md": "79117d01de7d2db3de0e7fa561dad50256c4b54bd7ee1fe5b19f6712a138e0ad",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/input.png": "45fc4cde1fb9088e0edb7ccded6079064c5556c7d89ea95570de16c94f06752c",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/source.json": "ea9ae3de3a0d9389b2a4c8b667f762c1e30131aeb9ecbd0daac24d24ed5e8883",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/plan.json": "68e8637077f5267bf06cbea38046581e519b2f92d9b78a20f36ff0d5988ca6c9",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/reproduce.py": "1c62a509b761bc995f05d54e0f3f83aff9577a3fff9551a19ae24af2f3aef795",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/result.json": "344a16c6a9116524343f60fc37d26edc8030210e0ac49f2d418a0db14685a220",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/recognition/recognized.gp5": "a2bd65e67892056ee40fe4a45f148b2313a2ea3182e6f92223b28af46ca468ba",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/recognition/conversion.json": "2d3a32e6fd1d30f13989b07ab4a823aec48442ef51c1e51da17fb803ea12c0ca",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/recognition/events.json": "6d9f50611bf8f35ad8ee1f251dbd4aa3a62ffc18749985c7c0e96a9008589b02",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/recognition/preview.txt": "76752d080346a55a5f2398a3a5693dd4eb8cdbf150feec8be3e42206b8ae7968",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/export/opening.gp5": "c04b1ea002bc0d1edbd374b8adb549b0ff550c017df82ca7b2eabd4015496e51",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/export/opening.musicxml": "1f633081a73dca1927129661b6d3d54dc5910ef60ff6a497f4b111526215879f",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/export/opening.mscz": "f83e3b6c1f5df21b5bf05da2af428701f5b05d4887bccdeac21b05b2f23126a3",
+    "examples/tablature-recognition/bushiyinweijimocaixiangni-opening/export/opening.pdf": "a50680aff44fb3d92915b44ad89a09e37d5ec7f58de55c456da2f89b305908cc"
+  }
+}

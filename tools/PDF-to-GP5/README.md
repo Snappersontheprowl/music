@@ -58,3 +58,5 @@
 Capo 保留为文字，播放不叠加变调夹移调，以免本机 MuseScore 导入后改写品位。检查 TAB 谱表、小节数及逐小节弦号/品位多重集合；这不能代替识别准确率评估。漏音、分组、节奏和演奏技法需人工校订，方法见 [六线谱处理说明](../../doc/TABLATURE_EVALUATION.md)。
 
 原有曲目专用脚本、参数和修订证据继续留在本地目录，不随本次通用代码提取而改写。
+
+从图片输入、原始报告到导出与误差分析的完整演示，见 [四小节技术示例](../../examples/tablature-recognition/bushiyinweijimocaixiangni-opening/README.md)。该片段按精确文件登记，整谱继续保存在本地。

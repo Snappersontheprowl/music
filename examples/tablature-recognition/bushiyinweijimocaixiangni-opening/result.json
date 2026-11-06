@@ -1,0 +1,48 @@
+{
+  "scope": {
+    "measures": [
+      1,
+      4
+    ],
+    "systems": 1
+  },
+  "python": "3.12.13",
+  "tool": "PDF-to-GP5",
+  "version": "0.9.0",
+  "upstream_commit": "4754a207ff4a08be8dfb4b5097c4a4c3775004d4",
+  "converter_sha256": "59bbf5cfb4e559ed6b5ac8fec761a0f9efab07f3dfcc96d8115d8b7e07ef9508",
+  "musescore": "4.7.5",
+  "parameters": {
+    "tempo": 80,
+    "meter": "4/4",
+    "tuning": "standard guitar",
+    "capo_text": 5,
+    "playback_capo": 0
+  },
+  "recognized_new_symbols": 29,
+  "musicxml_note_elements_including_rests_and_ties": 32,
+  "musicxml_measures": 4,
+  "rhythm_from_notation_bars": [
+    3
+  ],
+  "rhythm_estimated_bars": [
+    1,
+    2,
+    4
+  ],
+  "new_symbols_by_measure": [
+    10,
+    8,
+    5,
+    6
+  ],
+  "source_checked_observation": "Measure 3 has printed dead-note x symbols, but its raw events contain no dead notes; not a corrected performance score.",
+  "format_validation": "TAB staff and per-measure string/fret multisets preserved; no claim of recognition accuracy",
+  "reimport_validation": {
+    "measures": 4,
+    "staff": "TAB",
+    "per_measure_string_fret_multisets_preserved": true,
+    "pdf_pages": 1,
+    "pdf_visually_checked": true
+  }
+}

@@ -1,6 +1,8 @@
 """Exercise the publication guard against real Git trees, history and push hooks."""
 
 from pathlib import Path
+import hashlib
+import json
 import shutil
 import subprocess
 import sys
@@ -64,6 +66,56 @@ class PublicHistoryTests(unittest.TestCase):
         blob = self.run_git("rev-parse", "HEAD:score/README.md").stdout.strip()
         with self.assertRaises(subprocess.CalledProcessError):
             guard.violations(self.repo, [blob])
+
+    def approve_example(self):
+        name = "examples/tablature-recognition/original-study/input.png"
+        content = "Synthetic excerpt placeholder"
+        file = self.repo / name
+        file.parent.mkdir(parents=True)
+        file.write_text(content)
+        manifest = self.repo / guard.EXAMPLE_MANIFEST
+        manifest.parent.mkdir(parents=True)
+        manifest.write_text(json.dumps({"files": {name: hashlib.sha256(file.read_bytes()).hexdigest()}}))
+        self.run_git("add", ".")
+        self.run_git("commit", "-qm", "Review exact synthetic example")
+        return name
+
+    def test_exact_reviewed_example_is_allowed(self):
+        self.approve_example()
+        self.assertEqual(guard.violations(self.repo, ["HEAD"])[0], [])
+
+    def test_replacing_reviewed_excerpt_is_blocked(self):
+        name = self.approve_example()
+        self.commit_file(name, "A different or larger input")
+        self.assertTrue(guard.violations(self.repo, ["HEAD"])[0])
+
+    def test_unreviewed_example_sibling_is_blocked(self):
+        self.approve_example()
+        self.commit_file("examples/tablature-recognition/original-study/whole-song.musicxml", "Synthetic placeholder")
+        self.assertTrue(guard.violations(self.repo, ["HEAD"])[0])
+
+    def test_manifest_cannot_approve_private_score_collection(self):
+        name = "score/example/input.png"
+        file = self.repo / name
+        file.parent.mkdir(parents=True)
+        file.write_text("Synthetic placeholder")
+        manifest = self.repo / guard.EXAMPLE_MANIFEST
+        manifest.parent.mkdir(parents=True)
+        manifest.write_text(json.dumps({"files": {name: hashlib.sha256(file.read_bytes()).hexdigest()}}))
+        self.run_git("add", ".")
+        self.run_git("commit", "-qm", "Invalid private-path exception")
+        with self.assertRaises(ValueError):
+            guard.violations(self.repo, ["HEAD"])
+
+    def test_later_manifest_does_not_approve_earlier_unreviewed_history(self):
+        name = "examples/tablature-recognition/original-study/input.png"
+        self.commit_file(name, "Synthetic placeholder")
+        manifest = self.repo / guard.EXAMPLE_MANIFEST
+        manifest.parent.mkdir(parents=True)
+        manifest.write_text(json.dumps({"files": {name: hashlib.sha256((self.repo / name).read_bytes()).hexdigest()}}))
+        self.run_git("add", ".")
+        self.run_git("commit", "-qm", "Review after earlier publication")
+        self.assertTrue(guard.violations(self.repo, ["HEAD"])[0])
 
     def test_actual_hook_blocks_tainted_push_and_allows_clean_branch(self):
         project = Path(__file__).resolve().parents[1]
